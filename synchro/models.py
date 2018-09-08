@@ -24,8 +24,8 @@ options = SynchroSettings()
 
 class Reference(models.Model):
     content_type = models.ForeignKey(ContentType)
-    local_object_id = models.CharField(max_length=20)
-    remote_object_id = models.CharField(max_length=20)
+    local_object_id = models.CharField(max_length=60)
+    remote_object_id = models.CharField(max_length=60)
 
     class Meta:
         unique_together = ('content_type', 'local_object_id')
@@ -33,7 +33,7 @@ class Reference(models.Model):
 
 class ChangeLog(models.Model):
     content_type = models.ForeignKey(ContentType)
-    object_id = models.CharField(max_length=20)
+    object_id = models.CharField(max_length=60)
     object = GenericForeignKey()
     date = models.DateTimeField(auto_now=True)
     action = models.PositiveSmallIntegerField(choices=ACTIONS)
